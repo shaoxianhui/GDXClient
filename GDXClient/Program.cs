@@ -16,9 +16,16 @@ namespace GDXClient
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             LoginForm lf = new LoginForm();
-            if (lf.ShowDialog() == DialogResult.OK)
+            try
             {
-                Application.Run(new MainForm());
+                if (lf.ShowDialog() == DialogResult.OK)
+                {
+                    Application.Run(new MainForm());
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
         }
     }

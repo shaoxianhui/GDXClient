@@ -13,6 +13,26 @@ namespace GDXClient
 {
     public partial class LoginForm : Form
     {
+        private void login_callback(Boolean result, Object[] args, String output, PHPRPC_Error error, Boolean failure)
+        {
+            if (failure)
+            {
+                MessageBox.Show("登录失败！");
+            }
+            else
+            {
+                if (result == true)
+                {
+                    this.DialogResult = System.Windows.Forms.DialogResult.OK;
+                    this.Close();
+                }
+                else
+                {
+                    MessageBox.Show("登录失败！");
+                }
+            }
+        }
+
         public LoginForm()
         {
             InitializeComponent();
@@ -26,17 +46,8 @@ namespace GDXClient
                 return;
             }
             PHPRPC_Client client = new PHPRPC_Client("http://www.meirixianguo.com/index.php/Home/Api");
-            try
-            {
-                IService service = (IService)client.UseService(typeof(IService));
-                Hashtable admin = service.Login(name.Text.Trim(), password.Text.Trim());
-                this.DialogResult = System.Windows.Forms.DialogResult.OK;
-                this.Close();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("登录失败！");
-            }
+            IService service = (IService)client.UseService(typeof(IService));
+            service.Login(name.Text.Trim(), password.Text.Trim(), login_callback);
         }
 
         private void button_cancel_Click(object sender, EventArgs e)
