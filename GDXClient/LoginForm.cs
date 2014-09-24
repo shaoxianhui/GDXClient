@@ -8,6 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using System.Collections;
 using org.phprpc;
+using Hprose.Client;
 
 namespace GDXClient
 {
@@ -33,6 +34,19 @@ namespace GDXClient
             }
         }
 
+        private void login_callback2(Boolean result, Object[] args)
+        {
+            if (result == true)
+            {
+                this.DialogResult = System.Windows.Forms.DialogResult.OK;
+                this.Close();
+            }
+            else
+            {
+                MessageBox.Show("登录失败！");
+            }
+        }
+
         public LoginForm()
         {
             InitializeComponent();
@@ -48,6 +62,9 @@ namespace GDXClient
             PHPRPC_Client client = new PHPRPC_Client("http://www.meirixianguo.com/index.php/Home/Api");
             IService service = (IService)client.UseService(typeof(IService));
             service.Login(name.Text.Trim(), password.Text.Trim(), login_callback);
+            //HproseHttpClient client = new HproseHttpClient("http://www.meirixianguo.com/index.php/Home/Api2");
+            //IService2 stub = client.UseService<IService2>();
+            //stub.test1("World", login_callback2);
         }
 
         private void button_cancel_Click(object sender, EventArgs e)
