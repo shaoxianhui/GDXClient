@@ -58,24 +58,38 @@ namespace GDXClient
 
         private void MainForm_Load(object sender, EventArgs e)
         {
+            getFruitType();
+        }
+
+        private void getFruitType()
+        {
             dataGridView1.Rows.Clear();
             SysPublic.getInstance().getService().GetFruitType(getFruitType_callback);
         }
 
         private void dataGridView1_SelectionChanged(object sender, EventArgs e)
         {
+            getFruit();
+        }
+
+        private void getFruit()
+        {
             dataGridView2.Rows.Clear();
-            if(dataGridView1.SelectedRows.Count == 1)
+            if (dataGridView1.SelectedRows.Count == 1)
             {
                 SysPublic.getInstance().getService().GetFruit(Convert.ToInt32(dataGridView1.SelectedRows[0].Cells[0].Value.ToString()), getFruit_callback);
             }
-            
         }
 
         private void dataGridView2_SelectionChanged(object sender, EventArgs e)
         {
+            getFruitPrice();
+        }
+
+        private void getFruitPrice()
+        {
             dataGridView3.Rows.Clear();
-            if(dataGridView2.SelectedRows.Count == 1)
+            if (dataGridView2.SelectedRows.Count == 1)
             {
                 SysPublic.getInstance().getService().GetFruitPrice(Convert.ToInt32(dataGridView2.SelectedRows[0].Cells[0].Value.ToString()), getFruitPrice_callback);
             }
@@ -86,7 +100,7 @@ namespace GDXClient
             FruitTypeForm ftf = new FruitTypeForm(FruitTypeForm.MODE.ADD);
             if(ftf.ShowDialog() == DialogResult.OK)
             {
-                MainForm_Load(null, null);
+                getFruitType();
             }
         }
 
@@ -97,7 +111,7 @@ namespace GDXClient
                 FruitForm ff = new FruitForm(FruitTypeForm.MODE.ADD, Convert.ToInt32(dataGridView1.SelectedRows[0].Cells[0].Value), (string)dataGridView1.SelectedRows[0].Cells[1].Value);
                 if(ff.ShowDialog() == DialogResult.OK)
                 {
-                    MessageBox.Show("添加水果成功");
+                    getFruit();
                 }
             }
         }
@@ -109,7 +123,52 @@ namespace GDXClient
                 FruitPriceForm fpf = new FruitPriceForm(FruitTypeForm.MODE.ADD, Convert.ToInt32(dataGridView2.SelectedRows[0].Cells[0].Value), (string)dataGridView2.SelectedRows[0].Cells[1].Value);
                 if (fpf.ShowDialog() == DialogResult.OK)
                 {
+                    getFruitPrice();
+                }
+            }
+        }
 
+        private void updateButton2_Click(object sender, EventArgs e)
+        {
+            if (dataGridView1.SelectedRows.Count == 1)
+            {
+                FruitTypeForm ftf = new FruitTypeForm(FruitTypeForm.MODE.EDIT, Convert.ToInt32(dataGridView1.SelectedRows[0].Cells[0].Value), (string)dataGridView1.SelectedRows[0].Cells[1].Value);
+                if (ftf.ShowDialog() == DialogResult.OK)
+                {
+                    getFruitType();
+                }
+            }
+        }
+
+        private void updateButton5_Click(object sender, EventArgs e)
+        {
+            if (dataGridView2.SelectedRows.Count == 1)
+            {
+                FruitForm ff = new FruitForm(FruitTypeForm.MODE.EDIT, Convert.ToInt32(dataGridView2.SelectedRows[0].Cells[0].Value), 
+                                                                        (string)dataGridView2.SelectedRows[0].Cells[1].Value,
+                                                                        Convert.ToInt32(dataGridView2.SelectedRows[0].Cells[2].Value), 
+                                                                        (string)dataGridView2.SelectedRows[0].Cells[3].Value,
+                                                                        (string)dataGridView2.SelectedRows[0].Cells[4].Value,
+                                                                        (string)dataGridView2.SelectedRows[0].Cells[5].Value,
+                                                                        (float)Convert.ToDouble(dataGridView2.SelectedRows[0].Cells[6].Value));
+                if (ff.ShowDialog() == DialogResult.OK)
+                {
+                    getFruit();
+                }
+            }
+        }
+
+        private void updateButton8_Click(object sender, EventArgs e)
+        {
+            if (dataGridView3.SelectedRows.Count == 1)
+            {
+                FruitPriceForm fpf = new FruitPriceForm(FruitTypeForm.MODE.EDIT, Convert.ToInt32(dataGridView3.SelectedRows[0].Cells[0].Value), 
+                    (float)Convert.ToDouble(dataGridView3.SelectedRows[0].Cells[1].Value),
+                    (float)Convert.ToDouble(dataGridView3.SelectedRows[0].Cells[2].Value),
+                    (string)dataGridView3.SelectedRows[0].Cells[3].Value);
+                if (fpf.ShowDialog() == DialogResult.OK)
+                {
+                    getFruitPrice();
                 }
             }
         }

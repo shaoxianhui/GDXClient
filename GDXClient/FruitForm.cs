@@ -15,6 +15,13 @@ namespace GDXClient
         private FruitTypeForm.MODE _mode = FruitTypeForm.MODE.ADD;
         private int _fruitTypeId;
         private string _fruitTypeName;
+        private int _id;
+        private string _name;
+        private int _level;
+        private string _area;
+        private string _unit;
+        private string _description;
+        private float _loss;
         public FruitForm(FruitTypeForm.MODE mode, int fruitTypeId, string fruitTypeName)
         {
             InitializeComponent();
@@ -22,6 +29,25 @@ namespace GDXClient
             _fruitTypeId = fruitTypeId;
             _fruitTypeName = fruitTypeName;
             this.fruitTypeName.Text = _fruitTypeName;
+        }
+
+        public FruitForm(FruitTypeForm.MODE mode, int id, string name, int level, string area, string unit, string description, float loss)
+        {
+            InitializeComponent();
+            this._mode = mode;
+            this._id = id;
+            this._name = name;
+            this._level = level;
+            this._area = area;
+            this._unit = unit;
+            this._description = description;
+            this._loss = loss;
+            this.name.Text = _name;
+            this.level.Text = _level.ToString();
+            this.area.Text = _area;
+            this.unit.Text = _unit;
+            this.description.Text = _description;
+            this.loss.Text = _loss.ToString();
         }
 
         private void cancel_button_Click(object sender, EventArgs e)
@@ -45,16 +71,16 @@ namespace GDXClient
             {
                 if (_mode == FruitTypeForm.MODE.ADD)
                 {
-                    SysPublic.getInstance().getService().addFruit(_fruitTypeId, name.Text.Trim(), Convert.ToInt32(level.Text.Trim()), area.Text.Trim(), unit.Text.Trim(), description.Text.Trim(), (float)Convert.ToDouble(loss.Text.Trim()), addFruit_callback);
+                    SysPublic.getInstance().getService().AddFruit(_fruitTypeId, name.Text.Trim(), Convert.ToInt32(level.Text.Trim()), area.Text.Trim(), unit.Text.Trim(), description.Text.Trim(), (float)Convert.ToDouble(loss.Text.Trim()), Fruit_callback);
                 }
                 else if (_mode == FruitTypeForm.MODE.EDIT)
                 {
-
+                    SysPublic.getInstance().getService().UpdateFruit(_id, name.Text, Convert.ToInt32(level.Text.Trim()), area.Text.Trim(), unit.Text.Trim(), description.Text.Trim(), (float)Convert.ToDouble(loss.Text.Trim()), Fruit_callback);
                 }
             }
         }
 
-        private void addFruit_callback(int Result, object[] args, string output, PHPRPC_Error error, bool failure)
+        private void Fruit_callback(int Result, object[] args, string output, PHPRPC_Error error, bool failure)
         {
             if(Result == 0)
             {

@@ -24,7 +24,7 @@ namespace GDXClient
                 }
                 else
                 {
-                    Application.Run(new MainForm());
+                    //Application.Run(new MainForm());
                 }
             }
             catch (Exception ex)

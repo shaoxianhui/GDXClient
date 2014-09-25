@@ -15,12 +15,12 @@ namespace GDXClient
         void GetFruit(int fruitTypeId, PHPRPC_Callback<Hashtable> callback);
         void GetFruitPrice(int fruitId, PHPRPC_Callback<Hashtable> callback);
 
-        void addFruitType(string name, PHPRPC_Callback<int> callback);
-        void addFruit(int fruitTypeId, string name, int level, string area, string unit, string description, float loss, PHPRPC_Callback<int> callback);
-        void addFruitPrice(int fruitId, float mixPrice, float maxPrice, string cdate, PHPRPC_Callback<int> callback);
+        void AddFruitType(string name, PHPRPC_Callback<int> callback);
+        void AddFruit(int fruitTypeId, string name, int level, string area, string unit, string description, float loss, PHPRPC_Callback<int> callback);
+        void AddFruitPrice(int fruitId, float mixPrice, float maxPrice, string cdate, PHPRPC_Callback<int> callback);
 
-        void updateFruitType(int fruitTypeId, string name, PHPRPC_Callback<int> callback);
-        void updateFruit(int fruitId, string name, int level, string area, string unit, string description, float loss, PHPRPC_Callback<Hashtable> callback);
-        void updateFruitPrice(int fruitPriceId, float mixPrice, float maxPrice, string cdate, PHPRPC_Callback<Hashtable> callback);
+        void UpdateFruitType(int fruitTypeId, string name, PHPRPC_Callback<int> callback);
+        void UpdateFruit(int fruitId, string name, int level, string area, string unit, string description, float loss, PHPRPC_Callback<int> callback);
+        void UpdateFruitPrice(int fruitPriceId, float mixPrice, float maxPrice, string cdate, PHPRPC_Callback<int> callback);
     }
 }

@@ -15,6 +15,10 @@ namespace GDXClient
         private FruitTypeForm.MODE _mode;
         private int _fruitId;
         private string _fruitName;
+        private int _id;
+        private float _minPrice;
+        private float _maxPrice;
+        private string _cdate;
 
         public FruitPriceForm(FruitTypeForm.MODE mode, int fruitId, string fruitName)
         {
@@ -23,6 +27,19 @@ namespace GDXClient
             this._fruitId = fruitId;
             this._fruitName = fruitName;
             this.fruitName.Text = _fruitName;
+        }
+
+        public FruitPriceForm(FruitTypeForm.MODE mode, int id, float minPrice, float maxPrice, string cdate)
+        {
+            InitializeComponent();
+            this._mode = mode;
+            this._id = id;
+            this._minPrice = minPrice;
+            this._maxPrice = maxPrice;
+            this._cdate = cdate;
+            this.minPrice.Text = _minPrice.ToString();
+            this.maxPrice.Text = _maxPrice.ToString();
+            this.cdate.Text = _cdate;
         }
 
         private void cancel_button_Click(object sender, EventArgs e)
@@ -42,20 +59,20 @@ namespace GDXClient
             {
                 if (_mode == FruitTypeForm.MODE.ADD)
                 {
-                    SysPublic.getInstance().getService().addFruitPrice(_fruitId, (float)Convert.ToDouble(minPrice.Text.Trim()), (float)Convert.ToDouble(maxPrice.Text.Trim()), cdate.Text.Trim(), addFruitPrice_callback);
+                    SysPublic.getInstance().getService().AddFruitPrice(_fruitId, (float)Convert.ToDouble(minPrice.Text.Trim()), (float)Convert.ToDouble(maxPrice.Text.Trim()), cdate.Text.Trim(), FruitPrice_callback);
                 }
                 else if (_mode == FruitTypeForm.MODE.EDIT)
                 {
-
+                    SysPublic.getInstance().getService().UpdateFruitPrice(_id, (float)Convert.ToDouble(minPrice.Text.Trim()), (float)Convert.ToDouble(maxPrice.Text.Trim()), cdate.Text.Trim(), FruitPrice_callback);
                 }
             }
         }
 
-        private void addFruitPrice_callback(int Result, object[] args, string output, PHPRPC_Error error, bool failure)
+        private void FruitPrice_callback(int Result, object[] args, string output, PHPRPC_Error error, bool failure)
         {
             if (Result == 0)
             {
-                MessageBox.Show("添加失败");
+                MessageBox.Show("操作失败");
             }
             else
             {
