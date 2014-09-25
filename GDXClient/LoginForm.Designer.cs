@@ -39,43 +39,43 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(73, 41);
+            this.label1.Location = new System.Drawing.Point(73, 44);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(53, 12);
+            this.label1.Size = new System.Drawing.Size(55, 13);
             this.label1.TabIndex = 0;
             this.label1.Text = "用户名：";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(73, 110);
+            this.label2.Location = new System.Drawing.Point(73, 119);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(41, 12);
+            this.label2.Size = new System.Drawing.Size(43, 13);
             this.label2.TabIndex = 0;
             this.label2.Text = "密码：";
             // 
             // name
             // 
-            this.name.Location = new System.Drawing.Point(158, 37);
+            this.name.Location = new System.Drawing.Point(158, 40);
             this.name.Name = "name";
-            this.name.Size = new System.Drawing.Size(156, 21);
+            this.name.Size = new System.Drawing.Size(156, 20);
             this.name.TabIndex = 1;
             this.name.Text = "admin";
             // 
             // password
             // 
-            this.password.Location = new System.Drawing.Point(158, 106);
+            this.password.Location = new System.Drawing.Point(158, 115);
             this.password.Name = "password";
             this.password.PasswordChar = '*';
-            this.password.Size = new System.Drawing.Size(156, 21);
+            this.password.Size = new System.Drawing.Size(156, 20);
             this.password.TabIndex = 1;
             this.password.Text = "password";
             // 
             // button_ok
             // 
-            this.button_ok.Location = new System.Drawing.Point(75, 183);
+            this.button_ok.Location = new System.Drawing.Point(75, 198);
             this.button_ok.Name = "button_ok";
-            this.button_ok.Size = new System.Drawing.Size(75, 23);
+            this.button_ok.Size = new System.Drawing.Size(75, 25);
             this.button_ok.TabIndex = 0;
             this.button_ok.Text = "登陆";
             this.button_ok.UseVisualStyleBackColor = true;
@@ -83,9 +83,9 @@
             // 
             // button_cancel
             // 
-            this.button_cancel.Location = new System.Drawing.Point(239, 183);
+            this.button_cancel.Location = new System.Drawing.Point(239, 198);
             this.button_cancel.Name = "button_cancel";
-            this.button_cancel.Size = new System.Drawing.Size(75, 23);
+            this.button_cancel.Size = new System.Drawing.Size(75, 25);
             this.button_cancel.TabIndex = 2;
             this.button_cancel.Text = "取消";
             this.button_cancel.UseVisualStyleBackColor = true;
@@ -93,15 +93,18 @@
             // 
             // LoginForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(386, 243);
+            this.CancelButton = this.button_cancel;
+            this.ClientSize = new System.Drawing.Size(386, 263);
             this.Controls.Add(this.button_cancel);
             this.Controls.Add(this.button_ok);
             this.Controls.Add(this.password);
             this.Controls.Add(this.name);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
             this.Name = "LoginForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "登陆";
