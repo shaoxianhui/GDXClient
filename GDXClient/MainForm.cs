@@ -25,7 +25,7 @@ namespace GDXClient
             foreach(DictionaryEntry aa in result)
             {
                 Hashtable line = PHPConvert.ToHashtable(aa.Value);
-                dataGridView1.Rows.Add(new object[] { Encoding.UTF8.GetString((byte[])line["id"]),
+                dataGridView1.Rows.Insert(0, new object[] { Encoding.UTF8.GetString((byte[])line["id"]),
                                                         Encoding.UTF8.GetString((byte[])line["name"])});
             }
         }
@@ -35,7 +35,7 @@ namespace GDXClient
             foreach (DictionaryEntry aa in result)
             {
                 Hashtable line = PHPConvert.ToHashtable(aa.Value);
-                dataGridView2.Rows.Add(new object[] { Encoding.UTF8.GetString((byte[])line["id"]),
+                dataGridView2.Rows.Insert(0, new object[] { Encoding.UTF8.GetString((byte[])line["id"]),
                                                         Encoding.UTF8.GetString((byte[])line["name"]),
                                                         Encoding.UTF8.GetString((byte[])line["level"]),
                                                         Encoding.UTF8.GetString((byte[])line["area"]),
@@ -50,7 +50,7 @@ namespace GDXClient
             foreach (DictionaryEntry aa in result)
             {
                 Hashtable line = PHPConvert.ToHashtable(aa.Value);
-                dataGridView3.Rows.Add(new object[] { Encoding.UTF8.GetString((byte[])line["id"]),
+                dataGridView3.Rows.Insert(0, new object[] { Encoding.UTF8.GetString((byte[])line["id"]),
                                                         Encoding.UTF8.GetString((byte[])line["minPrice"]),
                                                         Encoding.UTF8.GetString((byte[])line["maxPrice"]),
                                                         Encoding.UTF8.GetString((byte[])line["cdate"])});
@@ -69,7 +69,7 @@ namespace GDXClient
             foreach (DictionaryEntry aa in result)
             {
                 Hashtable line = PHPConvert.ToHashtable(aa.Value);
-                dataGridView4.Rows.Add(new object[] { Encoding.UTF8.GetString((byte[])line["id"]),
+                dataGridView4.Rows.Insert(0, new object[] { Encoding.UTF8.GetString((byte[])line["id"]),
                                                         Encoding.UTF8.GetString((byte[])line["prizeName"]),
                                                         Encoding.UTF8.GetString((byte[])line["received"]),
                                                         line["location"] == null ? "": Encoding.UTF8.GetString((byte[])line["location"]),
