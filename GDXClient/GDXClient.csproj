@@ -88,6 +88,7 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SysPublic.cs" />
+    <Compile Include="Util.cs" />
     <EmbeddedResource Include="FruitForm.resx">
       <DependentUpon>FruitForm.cs</DependentUpon>
     </EmbeddedResource>

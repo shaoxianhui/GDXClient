@@ -22,5 +22,7 @@ namespace GDXClient
         void UpdateFruitType(int fruitTypeId, string name, PHPRPC_Callback<int> callback);
         void UpdateFruit(int fruitId, string name, int level, string area, string unit, string description, float loss, PHPRPC_Callback<int> callback);
         void UpdateFruitPrice(int fruitPriceId, float mixPrice, float maxPrice, string cdate, PHPRPC_Callback<int> callback);
+
+        void GetUserForPrize(int page, PHPRPC_Callback<Hashtable> callback);
     }
 }

@@ -14,6 +14,7 @@ namespace GDXClient
 {
     public partial class MainForm : Form
     {
+        private int page = 1;
         public MainForm()
         {
             InitializeComponent();
@@ -53,6 +54,27 @@ namespace GDXClient
                                                         Encoding.UTF8.GetString((byte[])line["minPrice"]),
                                                         Encoding.UTF8.GetString((byte[])line["maxPrice"]),
                                                         Encoding.UTF8.GetString((byte[])line["cdate"])});
+            }
+        }
+
+        private void getPrizeOfUser_callback(Hashtable result, Object[] args, String output, PHPRPC_Error error, Boolean failure)
+        {
+            if (result.Count == 0)
+            {
+                if(page > 1)
+                    page--;
+                return;
+            }
+            dataGridView4.Rows.Clear();
+            foreach (DictionaryEntry aa in result)
+            {
+                Hashtable line = PHPConvert.ToHashtable(aa.Value);
+                dataGridView4.Rows.Add(new object[] { Encoding.UTF8.GetString((byte[])line["id"]),
+                                                        Encoding.UTF8.GetString((byte[])line["prizeName"]),
+                                                        Encoding.UTF8.GetString((byte[])line["received"]),
+                                                        line["location"] == null ? "": Encoding.UTF8.GetString((byte[])line["location"]),
+                                                        line["phone"] == null ? "": Encoding.UTF8.GetString((byte[])line["location"]),
+                                                        String.Format("{0}", Util.UTCToDateTime(Convert.ToInt32(Encoding.UTF8.GetString((byte[])line["ctime"]))))});
             }
         }
 
@@ -171,6 +193,31 @@ namespace GDXClient
                     getFruitPrice();
                 }
             }
+        }
+
+        private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (tabControl1.SelectedTab == tabControl1.TabPages[1] || dataGridView4.Rows.Count == 0)
+            {
+                first_Click(null, null);
+            }
+        }
+
+        private void first_Click(object sender, EventArgs e)
+        {
+            SysPublic.getInstance().getService().GetUserForPrize(1, getPrizeOfUser_callback);
+        }
+
+        private void prev_Click(object sender, EventArgs e)
+        {
+            if (page == 1)
+                return;
+            SysPublic.getInstance().getService().GetUserForPrize(--page, getPrizeOfUser_callback);
+        }
+
+        private void next_Click(object sender, EventArgs e)
+        {
+            SysPublic.getInstance().getService().GetUserForPrize(++page, getPrizeOfUser_callback);
         }
     }
 }
