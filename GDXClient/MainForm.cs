@@ -14,7 +14,7 @@ namespace GDXClient
 {
     public partial class MainForm : Form
     {
-        private int page = 1;
+        private int pageForPrize = 1;
         public MainForm()
         {
             InitializeComponent();
@@ -61,8 +61,8 @@ namespace GDXClient
         {
             if (result.Count == 0)
             {
-                if(page > 1)
-                    page--;
+                if(pageForPrize > 1)
+                    pageForPrize--;
                 return;
             }
             dataGridView4.Rows.Clear();
@@ -75,6 +75,15 @@ namespace GDXClient
                                                         line["location"] == null ? "": Encoding.UTF8.GetString((byte[])line["location"]),
                                                         line["phone"] == null ? "": Encoding.UTF8.GetString((byte[])line["location"]),
                                                         String.Format("{0}", Util.UTCToDateTime(Convert.ToInt32(Encoding.UTF8.GetString((byte[])line["ctime"]))))});
+            }
+        }
+
+        private void updateReceived_callback(int result, Object[] args, String output, PHPRPC_Error error, Boolean failure)
+        {
+            if (result > 0)
+            {
+                MessageBox.Show("修改成功");
+                SysPublic.getInstance().getService().GetUserForPrize(pageForPrize, getPrizeOfUser_callback);
             }
         }
 
@@ -210,14 +219,24 @@ namespace GDXClient
 
         private void prev_Click(object sender, EventArgs e)
         {
-            if (page == 1)
+            if (pageForPrize == 1)
                 return;
-            SysPublic.getInstance().getService().GetUserForPrize(--page, getPrizeOfUser_callback);
+            SysPublic.getInstance().getService().GetUserForPrize(--pageForPrize, getPrizeOfUser_callback);
         }
 
         private void next_Click(object sender, EventArgs e)
         {
-            SysPublic.getInstance().getService().GetUserForPrize(++page, getPrizeOfUser_callback);
+            SysPublic.getInstance().getService().GetUserForPrize(++pageForPrize, getPrizeOfUser_callback);
+        }
+
+        private void updateReceived_Click(object sender, EventArgs e)
+        {
+            if (dataGridView4.SelectedRows.Count == 1)
+            {
+                int id = Convert.ToInt32((string)dataGridView4.SelectedRows[0].Cells[0].Value);
+                int received = Convert.ToInt32((string)dataGridView4.SelectedRows[0].Cells[2].Value);
+                SysPublic.getInstance().getService().UpdateReceived(id, received == 0 ? 1 : 0, updateReceived_callback);
+            }
         }
     }
 }

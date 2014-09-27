@@ -71,9 +71,7 @@
             this.phone = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ctime = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.toolStrip4 = new System.Windows.Forms.ToolStrip();
-            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton4 = new System.Windows.Forms.ToolStripButton();
+            this.updateReceived = new System.Windows.Forms.ToolStripButton();
             this.first = new System.Windows.Forms.ToolStripButton();
             this.prev = new System.Windows.Forms.ToolStripButton();
             this.next = new System.Windows.Forms.ToolStripButton();
@@ -476,9 +474,7 @@
             // toolStrip4
             // 
             this.toolStrip4.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripButton1,
-            this.toolStripButton2,
-            this.toolStripButton4,
+            this.updateReceived,
             this.first,
             this.prev,
             this.next});
@@ -488,32 +484,15 @@
             this.toolStrip4.TabIndex = 2;
             this.toolStrip4.Text = "toolStrip4";
             // 
-            // toolStripButton1
+            // updateReceived
             // 
-            this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
-            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton1.Name = "toolStripButton1";
-            this.toolStripButton1.Size = new System.Drawing.Size(23, 22);
-            this.toolStripButton1.Text = "增加";
-            // 
-            // toolStripButton2
-            // 
-            this.toolStripButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton2.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton2.Image")));
-            this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton2.Name = "toolStripButton2";
-            this.toolStripButton2.Size = new System.Drawing.Size(23, 22);
-            this.toolStripButton2.Text = "修改";
-            // 
-            // toolStripButton4
-            // 
-            this.toolStripButton4.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton4.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton4.Image")));
-            this.toolStripButton4.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton4.Name = "toolStripButton4";
-            this.toolStripButton4.Size = new System.Drawing.Size(23, 22);
-            this.toolStripButton4.Text = "删除";
+            this.updateReceived.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.updateReceived.Image = ((System.Drawing.Image)(resources.GetObject("updateReceived.Image")));
+            this.updateReceived.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.updateReceived.Name = "updateReceived";
+            this.updateReceived.Size = new System.Drawing.Size(23, 22);
+            this.updateReceived.Text = "修改";
+            this.updateReceived.Click += new System.EventHandler(this.updateReceived_Click);
             // 
             // first
             // 
@@ -645,9 +624,7 @@
         private System.Windows.Forms.TabPage tabPage3;
         private System.Windows.Forms.DataGridView dataGridView4;
         private System.Windows.Forms.ToolStrip toolStrip4;
-        private System.Windows.Forms.ToolStripButton toolStripButton1;
-        private System.Windows.Forms.ToolStripButton toolStripButton2;
-        private System.Windows.Forms.ToolStripButton toolStripButton4;
+        private System.Windows.Forms.ToolStripButton updateReceived;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
         private System.Windows.Forms.DataGridViewTextBoxColumn prize;
         private System.Windows.Forms.DataGridViewTextBoxColumn received;
