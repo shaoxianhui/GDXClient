@@ -51,7 +51,6 @@ namespace GDXClient
                                                         Encoding.UTF8.GetString((byte[])line["customer"]),
                                                         Encoding.UTF8.GetString((byte[])line["earliest"]),
                                                         Encoding.UTF8.GetString((byte[])line["latest"]),
-                                                        Encoding.UTF8.GetString((byte[])line["money"]),
                                                         Encoding.UTF8.GetString((byte[])line["status"]),
                                                         Encoding.UTF8.GetString((byte[])line["comment"]),
                 });
@@ -105,6 +104,7 @@ namespace GDXClient
                 dataGridView6.Rows.Insert(0, new object[] { Encoding.UTF8.GetString((byte[])line["id"]),
                                                         Encoding.UTF8.GetString((byte[])line["product"]),
                                                         Encoding.UTF8.GetString((byte[])line["quantity"]),
+                                                        Encoding.UTF8.GetString((byte[])line["money"]),
                                                         Encoding.UTF8.GetString((byte[])line["comment"])});
             }
         }

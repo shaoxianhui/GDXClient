@@ -34,29 +34,29 @@
             // 
             // name
             // 
-            this.name.Location = new System.Drawing.Point(193, 44);
+            this.name.Location = new System.Drawing.Point(193, 41);
             this.name.Name = "name";
-            this.name.Size = new System.Drawing.Size(106, 20);
+            this.name.Size = new System.Drawing.Size(106, 21);
             this.name.TabIndex = 11;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(57, 48);
+            this.label2.Location = new System.Drawing.Point(57, 44);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(67, 13);
+            this.label2.Size = new System.Drawing.Size(65, 12);
             this.label2.TabIndex = 10;
             this.label2.Text = "水果名称：";
             // 
             // OrderForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(361, 426);
+            this.ClientSize = new System.Drawing.Size(361, 393);
             this.Controls.Add(this.name);
             this.Controls.Add(this.label2);
             this.Name = "OrderForm";
-            this.Text = "创建订单";
+            this.Text = "订单";
             this.ResumeLayout(false);
             this.PerformLayout();
 
