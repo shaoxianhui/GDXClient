@@ -15,9 +15,47 @@ namespace GDXClient
     public partial class MainForm : Form
     {
         private int pageForPrize = 1;
+        private DateTimePicker dtp;
         public MainForm()
         {
             InitializeComponent();
+            dtp = new DateTimePicker();
+            dtp.Format = DateTimePickerFormat.Custom;
+            dtp.CustomFormat = "yyyy-M-d";
+            dtp.ValueChanged += Dtp_ValueChanged;
+            ToolStripControlHost dateItem = new ToolStripControlHost(dtp);
+            toolStrip5.Items.Add(dateItem);
+            dataGridView5.Rows.Add(new object[] { 1, "乐元素", "13:00", "14:00", 500, "派送中", "索要发票" });
+            dataGridView5.Rows.Add(new object[] { 2, "搜狗", "13:00", "14:00", 500, "生产中", "索要发票" });
+            dataGridView6.Rows.Add(new object[] { 3, "三果切A", 50, "香蕉换草莓" });
+            dataGridView6.Rows.Add(new object[] { 3, "单果切B", 150, "杨梅" });
+            dataGridView6.Rows.Add(new object[] { 3, "单果切B", 150, "杨梅" });
+            dataGridView6.Rows.Add(new object[] { 3, "单果切B", 150, "杨梅" });
+            dataGridView6.Rows.Add(new object[] { 3, "单果切B", 150, "杨梅" });
+            dataGridView6.Rows.Add(new object[] { 3, "单果切B", 150, "杨梅" });
+        }
+
+        private void Dtp_ValueChanged(object sender, EventArgs e)
+        {
+            getOrder();
+        }
+
+        private void getOrder_callback(Hashtable result, Object[] args, String output, PHPRPC_Error error, Boolean failure)
+        {
+            if (result == null)
+                return;
+            foreach (DictionaryEntry aa in result)
+            {
+                Hashtable line = PHPConvert.ToHashtable(aa.Value);
+                dataGridView5.Rows.Insert(0, new object[] { Encoding.UTF8.GetString((byte[])line["id"]),
+                                                        Encoding.UTF8.GetString((byte[])line["customer"]),
+                                                        Encoding.UTF8.GetString((byte[])line["earliest"]),
+                                                        Encoding.UTF8.GetString((byte[])line["latest"]),
+                                                        Encoding.UTF8.GetString((byte[])line["money"]),
+                                                        Encoding.UTF8.GetString((byte[])line["status"]),
+                                                        Encoding.UTF8.GetString((byte[])line["comment"]),
+                });
+            }
         }
 
         private void getFruitType_callback(Hashtable result, Object[] args, String output, PHPRPC_Error error, Boolean failure)
@@ -57,6 +95,20 @@ namespace GDXClient
             }
         }
 
+        private void getOrderItem_callback(Hashtable result, Object[] args, String output, PHPRPC_Error error, Boolean failure)
+        {
+            if (result == null)
+                return;
+            foreach (DictionaryEntry aa in result)
+            {
+                Hashtable line = PHPConvert.ToHashtable(aa.Value);
+                dataGridView6.Rows.Insert(0, new object[] { Encoding.UTF8.GetString((byte[])line["id"]),
+                                                        Encoding.UTF8.GetString((byte[])line["product"]),
+                                                        Encoding.UTF8.GetString((byte[])line["quantity"]),
+                                                        Encoding.UTF8.GetString((byte[])line["comment"])});
+            }
+        }
+
         private void getPrizeOfUser_callback(Hashtable result, Object[] args, String output, PHPRPC_Error error, Boolean failure)
         {
             if (result.Count == 0)
@@ -90,6 +142,13 @@ namespace GDXClient
         private void MainForm_Load(object sender, EventArgs e)
         {
             getFruitType();
+            getOrder();
+        }
+
+        private void getOrder()
+        {
+            dataGridView5.Rows.Clear();
+            SysPublic.getInstance().getService().GetOrder(dtp.Text.Trim(), getOrder_callback);
         }
 
         private void getFruitType()
@@ -236,6 +295,15 @@ namespace GDXClient
                 int id = Convert.ToInt32((string)dataGridView4.SelectedRows[0].Cells[0].Value);
                 int received = Convert.ToInt32((string)dataGridView4.SelectedRows[0].Cells[2].Value);
                 SysPublic.getInstance().getService().UpdateReceived(id, received == 0 ? 1 : 0, updateReceived_callback);
+            }
+        }
+
+        private void dataGridView5_SelectionChanged(object sender, EventArgs e)
+        {
+            dataGridView6.Rows.Clear();
+            if (dataGridView5.SelectedRows.Count == 1)
+            {
+                SysPublic.getInstance().getService().GetOrderItem(Convert.ToInt32(dataGridView5.SelectedRows[0].Cells[0].Value.ToString()), getOrderItem_callback);
             }
         }
     }

@@ -11,6 +11,9 @@ namespace GDXClient
     {
         void Login(string name, string password, PHPRPC_Callback<Boolean> callback);
 
+        void GetOrder(string cdate, PHPRPC_Callback<Hashtable> callback);
+        void GetOrderItem(int orderId, PHPRPC_Callback<Hashtable> callback);
+
         void GetFruitType(PHPRPC_Callback<Hashtable> callback);
         void GetFruit(int fruitTypeId, PHPRPC_Callback<Hashtable> callback);
         void GetFruitPrice(int fruitId, PHPRPC_Callback<Hashtable> callback);
