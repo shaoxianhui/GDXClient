@@ -21,7 +21,7 @@ namespace GDXClient
             InitializeComponent();
             dtp = new DateTimePicker();
             dtp.Format = DateTimePickerFormat.Custom;
-            dtp.CustomFormat = "yyyy-M-d";
+            dtp.CustomFormat = "yyyy-M-dd";
             dtp.ValueChanged += Dtp_ValueChanged;
             ToolStripControlHost dateItem = new ToolStripControlHost(dtp);
             toolStrip5.Items.Add(dateItem);
@@ -59,7 +59,7 @@ namespace GDXClient
 
         private void getFruitType_callback(Hashtable result, Object[] args, String output, PHPRPC_Error error, Boolean failure)
         {
-            foreach(DictionaryEntry aa in result)
+            foreach (DictionaryEntry aa in result)
             {
                 Hashtable line = PHPConvert.ToHashtable(aa.Value);
                 dataGridView1.Rows.Insert(0, new object[] { Encoding.UTF8.GetString((byte[])line["id"]),
@@ -113,7 +113,7 @@ namespace GDXClient
         {
             if (result.Count == 0)
             {
-                if(pageForPrize > 1)
+                if (pageForPrize > 1)
                     pageForPrize--;
                 return;
             }
@@ -188,7 +188,7 @@ namespace GDXClient
         private void addButton1_Click(object sender, EventArgs e)
         {
             FruitTypeForm ftf = new FruitTypeForm(FruitTypeForm.MODE.ADD);
-            if(ftf.ShowDialog() == DialogResult.OK)
+            if (ftf.ShowDialog() == DialogResult.OK)
             {
                 getFruitType();
             }
@@ -196,10 +196,10 @@ namespace GDXClient
 
         private void addButton4_Click(object sender, EventArgs e)
         {
-            if(dataGridView1.SelectedRows.Count == 1)
+            if (dataGridView1.SelectedRows.Count == 1)
             {
                 FruitForm ff = new FruitForm(FruitTypeForm.MODE.ADD, Convert.ToInt32(dataGridView1.SelectedRows[0].Cells[0].Value), (string)dataGridView1.SelectedRows[0].Cells[1].Value);
-                if(ff.ShowDialog() == DialogResult.OK)
+                if (ff.ShowDialog() == DialogResult.OK)
                 {
                     getFruit();
                 }
@@ -234,9 +234,9 @@ namespace GDXClient
         {
             if (dataGridView2.SelectedRows.Count == 1)
             {
-                FruitForm ff = new FruitForm(FruitTypeForm.MODE.EDIT, Convert.ToInt32(dataGridView2.SelectedRows[0].Cells[0].Value), 
+                FruitForm ff = new FruitForm(FruitTypeForm.MODE.EDIT, Convert.ToInt32(dataGridView2.SelectedRows[0].Cells[0].Value),
                                                                         (string)dataGridView2.SelectedRows[0].Cells[1].Value,
-                                                                        Convert.ToInt32(dataGridView2.SelectedRows[0].Cells[2].Value), 
+                                                                        Convert.ToInt32(dataGridView2.SelectedRows[0].Cells[2].Value),
                                                                         (string)dataGridView2.SelectedRows[0].Cells[3].Value,
                                                                         (string)dataGridView2.SelectedRows[0].Cells[4].Value,
                                                                         (string)dataGridView2.SelectedRows[0].Cells[5].Value,
@@ -252,7 +252,7 @@ namespace GDXClient
         {
             if (dataGridView3.SelectedRows.Count == 1)
             {
-                FruitPriceForm fpf = new FruitPriceForm(FruitTypeForm.MODE.EDIT, Convert.ToInt32(dataGridView3.SelectedRows[0].Cells[0].Value), 
+                FruitPriceForm fpf = new FruitPriceForm(FruitTypeForm.MODE.EDIT, Convert.ToInt32(dataGridView3.SelectedRows[0].Cells[0].Value),
                     (float)Convert.ToDouble(dataGridView3.SelectedRows[0].Cells[1].Value),
                     (float)Convert.ToDouble(dataGridView3.SelectedRows[0].Cells[2].Value),
                     (string)dataGridView3.SelectedRows[0].Cells[3].Value);
@@ -300,11 +300,108 @@ namespace GDXClient
 
         private void dataGridView5_SelectionChanged(object sender, EventArgs e)
         {
+            getOrderItem();
+        }
+
+        private void getOrderItem()
+        {
             dataGridView6.Rows.Clear();
             if (dataGridView5.SelectedRows.Count == 1)
             {
                 SysPublic.getInstance().getService().GetOrderItem(Convert.ToInt32(dataGridView5.SelectedRows[0].Cells[0].Value.ToString()), getOrderItem_callback);
             }
+        }
+
+        private void toolStripButton1_Click(object sender, EventArgs e)
+        {
+            OrderForm df = new OrderForm(FruitTypeForm.MODE.ADD);
+            if (df.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                MessageBox.Show("成功");
+            }
+            getOrder();
+        }
+
+        private void toolStripButton5_Click(object sender, EventArgs e)
+        {
+            if (dataGridView5.SelectedRows.Count == 1)
+            {
+                OrderItemForm oif = new OrderItemForm(FruitTypeForm.MODE.ADD, Convert.ToInt32(dataGridView5.SelectedRows[0].Cells[0].Value.ToString()), dataGridView5.SelectedRows[0].Cells[1].Value.ToString());
+                if (oif.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                {
+                    MessageBox.Show("成功");
+                }
+            }
+            getOrderItem();
+        }
+
+        private void toolStripButton2_Click(object sender, EventArgs e)
+        {
+            if (dataGridView5.SelectedRows.Count == 1)
+            {
+                OrderForm df = new OrderForm(FruitTypeForm.MODE.EDIT, Convert.ToInt32(dataGridView5.SelectedRows[0].Cells[0].Value.ToString()),
+                                                                        dtp.Text, dataGridView5.SelectedRows[0].Cells[1].Value.ToString(),
+                                                                        dataGridView5.SelectedRows[0].Cells[2].Value.ToString(),
+                                                                        dataGridView5.SelectedRows[0].Cells[3].Value.ToString(),
+                                                                        dataGridView5.SelectedRows[0].Cells[5].Value.ToString());
+                if (df.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                {
+                    MessageBox.Show("成功");
+                }
+            }
+            getOrder();
+        }
+
+        private void toolStripButton7_Click(object sender, EventArgs e)
+        {
+            if (dataGridView6.SelectedRows.Count == 1)
+            {
+                OrderItemForm oif = new OrderItemForm(FruitTypeForm.MODE.EDIT, dataGridView5.SelectedRows[0].Cells[1].Value.ToString(),
+                    Convert.ToInt32(dataGridView6.SelectedRows[0].Cells[0].Value.ToString()), 
+                    dataGridView6.SelectedRows[0].Cells[1].Value.ToString(),
+                    Convert.ToInt32(dataGridView6.SelectedRows[0].Cells[2].Value.ToString()),
+                    float.Parse(dataGridView6.SelectedRows[0].Cells[3].Value.ToString()),
+                    dataGridView6.SelectedRows[0].Cells[4].Value.ToString());
+                if (oif.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                {
+                    MessageBox.Show("成功");
+                }
+            }
+            getOrderItem();
+        }
+
+        private void toolStripButton4_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("删除此订单？", "删除警告", MessageBoxButtons.OKCancel) == DialogResult.OK)
+            {
+                SysPublic.getInstance().getService().DeleteOrder(Convert.ToInt32(dataGridView5.SelectedRows[0].Cells[0].Value.ToString()), DeleteOrder_callback);
+            }
+        }
+
+        private void toolStripButton8_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("删除此订单项？", "删除警告", MessageBoxButtons.OKCancel) == DialogResult.OK)
+            {
+                SysPublic.getInstance().getService().DeleteOrderItem(Convert.ToInt32(dataGridView6.SelectedRows[0].Cells[0].Value.ToString()), DeleteOrderItem_callback);
+            }
+        }
+
+        private void DeleteOrder_callback(int Result, object[] args, string output, PHPRPC_Error error, bool failure)
+        {
+            if (Result == 0)
+            {
+                MessageBox.Show("操作失败");
+            }
+            getOrder();
+        }
+
+        private void DeleteOrderItem_callback(int Result, object[] args, string output, PHPRPC_Error error, bool failure)
+        {
+            if (Result == 0)
+            {
+                MessageBox.Show("操作失败");
+            }
+            getOrderItem();
         }
     }
 }

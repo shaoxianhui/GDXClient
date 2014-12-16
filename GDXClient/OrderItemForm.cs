@@ -10,47 +10,46 @@ using org.phprpc;
 
 namespace GDXClient
 {
-    public partial class OrderForm : Form
+    public partial class OrderItemForm : Form
     {
         private FruitTypeForm.MODE _mode = FruitTypeForm.MODE.ADD;
         private int _id;
-        private string _cdate;
+        private int _orderId;
         private string _customer;
-        private string _earliest;
-        private string _latest;
+        private string _product;
+        private int _quantity;
+        private float _money;
         private string _comment;
 
-        public OrderForm()
-        {
-            InitializeComponent();
-        }
-
-        public OrderForm(FruitTypeForm.MODE mode)
+        public OrderItemForm(FruitTypeForm.MODE mode, int orderId, string customer)
         {
             InitializeComponent();
             this._mode = mode;
-        }
-
-        public OrderForm(FruitTypeForm.MODE mode, int orderId, string cdate, string customer, string earliest, string latest, string comment)
-        {
-            InitializeComponent();
-            this._mode = mode;
-            this._id = orderId;
-            this._cdate = cdate;
+            this._orderId = orderId;
             this._customer = customer;
-            this._earliest = earliest;
-            this._latest = latest;
+            this.customer.Text = this._customer;
+        }
+
+        public OrderItemForm(FruitTypeForm.MODE mode, string customer, int orderItemId, string product, int quantity, float money, string comment)
+        {
+            InitializeComponent();
+            this._mode = mode;
+            this._customer = customer;
+            this._id = orderItemId;
+            this._product = product;
+            this._money = money;
+            this._quantity = quantity;
             this._comment = comment;
             this.customer.Text = this._customer;
-            this.latest.Text = this._latest;
-            this.earliest.Text = this._earliest;
+            this.product.Text = this._product;
+            this.quantity.Value = this._quantity;
+            this.money.Text = this._money.ToString();
             this.comment.Text = this._comment;
-            this.cdate.Text = this._cdate;
         }
 
         private void add_update_button_Click(object sender, EventArgs e)
         {
-            if (String.IsNullOrEmpty(customer.Text.Trim()))
+            if (String.IsNullOrEmpty(product.Text.Trim()))
             {
                 MessageBox.Show("填写不完整");
             }
@@ -58,11 +57,11 @@ namespace GDXClient
             {
                 if (_mode == FruitTypeForm.MODE.ADD)
                 {
-                    SysPublic.getInstance().getService().AddOrder(customer.Text.Trim(), cdate.Text.Trim(), earliest.Text.Trim(), latest.Text.Trim(), comment.Text.Trim(), Order_callback);
+                    SysPublic.getInstance().getService().AddOrderItem(_orderId, product.Text.Trim(), Convert.ToInt32(quantity.Value), float.Parse(money.Text.Trim()), comment.Text.Trim(), OrderItem_callback);
                 }
                 else if (_mode == FruitTypeForm.MODE.EDIT)
                 {
-                    SysPublic.getInstance().getService().UpdateOrder(_id, customer.Text.Trim(), cdate.Text.Trim(), earliest.Text.Trim(), latest.Text.Trim(), comment.Text.Trim(), Order_callback);
+                    SysPublic.getInstance().getService().UpdateOrderItem(_id, product.Text.Trim(), Convert.ToInt32(quantity.Value), float.Parse(money.Text.Trim()), comment.Text.Trim(), OrderItem_callback);
                 }
             }
         }
@@ -73,7 +72,7 @@ namespace GDXClient
             this.Close();
         }
 
-        private void Order_callback(int Result, object[] args, string output, PHPRPC_Error error, bool failure)
+        private void OrderItem_callback(int Result, object[] args, string output, PHPRPC_Error error, bool failure)
         {
             if (Result == 0)
             {

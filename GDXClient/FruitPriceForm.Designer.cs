@@ -100,7 +100,7 @@
             // 
             // cdate
             // 
-            this.cdate.CustomFormat = "yyyy-M-d";
+            this.cdate.CustomFormat = "yyyy-M-dd";
             this.cdate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.cdate.Location = new System.Drawing.Point(184, 186);
             this.cdate.Name = "cdate";
