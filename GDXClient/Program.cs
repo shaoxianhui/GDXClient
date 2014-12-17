@@ -20,11 +20,7 @@ namespace GDXClient
             {
                 if (lf.ShowDialog() == DialogResult.OK)
                 {
-                    Application.Run(new MainForm());
-                }
-                else
-                {
-                    //Application.Run(new MainForm());
+                    Application.Run(new Main());
                 }
             }
             catch (Exception ex)

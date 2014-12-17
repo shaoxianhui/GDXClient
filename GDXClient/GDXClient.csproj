@@ -53,6 +53,24 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CustomerEditControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CustomerEditControl.Designer.cs">
+      <DependentUpon>CustomerEditControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FruitEditControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FruitEditControl.Designer.cs">
+      <DependentUpon>FruitEditControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Main.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Main.Designer.cs">
+      <DependentUpon>Main.cs</DependentUpon>
+    </Compile>
     <Compile Include="FruitForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -85,6 +103,18 @@
     <Compile Include="MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="OrderControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="OrderControl.Designer.cs">
+      <DependentUpon>OrderControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OrderEditControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="OrderEditControl.Designer.cs">
+      <DependentUpon>OrderEditControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="OrderForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -97,10 +127,31 @@
     <Compile Include="OrderItemForm.Designer.cs">
       <DependentUpon>OrderItemForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="OrderListControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="OrderListControl.Designer.cs">
+      <DependentUpon>OrderListControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PrizeListControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PrizeListControl.Designer.cs">
+      <DependentUpon>PrizeListControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SysPublic.cs" />
     <Compile Include="Util.cs" />
+    <EmbeddedResource Include="CustomerEditControl.resx">
+      <DependentUpon>CustomerEditControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FruitEditControl.resx">
+      <DependentUpon>FruitEditControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Main.resx">
+      <DependentUpon>Main.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FruitForm.resx">
       <DependentUpon>FruitForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -116,11 +167,23 @@
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="OrderControl.resx">
+      <DependentUpon>OrderControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OrderEditControl.resx">
+      <DependentUpon>OrderEditControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="OrderForm.resx">
       <DependentUpon>OrderForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="OrderItemForm.resx">
       <DependentUpon>OrderItemForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OrderListControl.resx">
+      <DependentUpon>OrderListControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PrizeListControl.resx">
+      <DependentUpon>PrizeListControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
