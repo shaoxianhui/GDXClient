@@ -80,6 +80,11 @@
             // quantity
             // 
             this.quantity.Location = new System.Drawing.Point(166, 114);
+            this.quantity.Maximum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
             this.quantity.Name = "quantity";
             this.quantity.Size = new System.Drawing.Size(159, 21);
             this.quantity.TabIndex = 15;

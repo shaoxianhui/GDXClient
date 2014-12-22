@@ -32,7 +32,7 @@ namespace GDXClient
         void DeleteOrder(int orderId, PHPRPC_Callback<int> callback);
         void DeleteOrderItem(int orderItemId, PHPRPC_Callback<int> callback);
 
-        void GetUserForPrize(int page, PHPRPC_Callback<Hashtable> callback);
+        void GetPrizer(int page, PHPRPC_Callback<Hashtable> callback);
         void UpdateReceived(int id, int received, PHPRPC_Callback<int> callback);
     }
 }

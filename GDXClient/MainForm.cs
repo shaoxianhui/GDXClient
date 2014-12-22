@@ -25,14 +25,6 @@ namespace GDXClient
             dtp.ValueChanged += Dtp_ValueChanged;
             ToolStripControlHost dateItem = new ToolStripControlHost(dtp);
             toolStrip5.Items.Add(dateItem);
-            dataGridView5.Rows.Add(new object[] { 1, "乐元素", "13:00", "14:00", 500, "派送中", "索要发票" });
-            dataGridView5.Rows.Add(new object[] { 2, "搜狗", "13:00", "14:00", 500, "生产中", "索要发票" });
-            dataGridView6.Rows.Add(new object[] { 3, "三果切A", 50, "香蕉换草莓" });
-            dataGridView6.Rows.Add(new object[] { 3, "单果切B", 150, "杨梅" });
-            dataGridView6.Rows.Add(new object[] { 3, "单果切B", 150, "杨梅" });
-            dataGridView6.Rows.Add(new object[] { 3, "单果切B", 150, "杨梅" });
-            dataGridView6.Rows.Add(new object[] { 3, "单果切B", 150, "杨梅" });
-            dataGridView6.Rows.Add(new object[] { 3, "单果切B", 150, "杨梅" });
         }
 
         private void Dtp_ValueChanged(object sender, EventArgs e)
@@ -135,7 +127,7 @@ namespace GDXClient
             if (result > 0)
             {
                 MessageBox.Show("修改成功");
-                SysPublic.getInstance().getService().GetUserForPrize(pageForPrize, getPrizeOfUser_callback);
+                SysPublic.getInstance().getService().GetPrizer(pageForPrize, getPrizeOfUser_callback);
             }
         }
 
@@ -273,19 +265,19 @@ namespace GDXClient
 
         private void first_Click(object sender, EventArgs e)
         {
-            SysPublic.getInstance().getService().GetUserForPrize(1, getPrizeOfUser_callback);
+            SysPublic.getInstance().getService().GetPrizer(1, getPrizeOfUser_callback);
         }
 
         private void prev_Click(object sender, EventArgs e)
         {
             if (pageForPrize == 1)
                 return;
-            SysPublic.getInstance().getService().GetUserForPrize(--pageForPrize, getPrizeOfUser_callback);
+            SysPublic.getInstance().getService().GetPrizer(--pageForPrize, getPrizeOfUser_callback);
         }
 
         private void next_Click(object sender, EventArgs e)
         {
-            SysPublic.getInstance().getService().GetUserForPrize(++pageForPrize, getPrizeOfUser_callback);
+            SysPublic.getInstance().getService().GetPrizer(++pageForPrize, getPrizeOfUser_callback);
         }
 
         private void updateReceived_Click(object sender, EventArgs e)

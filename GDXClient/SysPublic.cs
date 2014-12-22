@@ -15,8 +15,8 @@ namespace GDXClient
         private SysPublic()
         {
             //client = new PHPRPC_Client("http://localhost/guodaxia/index.php/Admin/Api");
-            client = new PHPRPC_Client("http://test.meirixianguo.com/index.php/Admin/Api");
-            //client = new PHPRPC_Client("http://www.meirixianguo.com/index.php/Admin/Api");
+            //client = new PHPRPC_Client("http://test.meirixianguo.com/index.php/Admin/Api");
+            client = new PHPRPC_Client("http://www.meirixianguo.com/index.php/Admin/Api");
             service = (IService)client.UseService(typeof(IService));
         }
 
