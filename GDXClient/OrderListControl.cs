@@ -39,7 +39,7 @@ namespace GDXClient
         private void GetOrders()
         {
             list.Controls.Clear();
-            SysPublic.getInstance().getService().GetOrder(dtp.Value.ToString().Trim(), getOrder_callback);
+            SysPublic.getInstance().getService().GetOrder(dtp.Value.ToString(dtp.CustomFormat).Trim(), getOrder_callback);
         }
 
         private void getOrder_callback(Hashtable result, Object[] args, String output, PHPRPC_Error error, Boolean failure)
@@ -53,6 +53,11 @@ namespace GDXClient
                 oc.Dock = DockStyle.Top;
                 list.Controls.Add(oc);
             }
+        }
+
+        private void toolStripButton1_Click(object sender, EventArgs e)
+        {
+            GetOrders();
         }
     }
 }

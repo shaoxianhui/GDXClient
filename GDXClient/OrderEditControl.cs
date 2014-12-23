@@ -71,7 +71,7 @@ namespace GDXClient
         private void getOrder()
         {
             dataGridView5.Rows.Clear();
-            SysPublic.getInstance().getService().GetOrder(dtp.Value.ToString().Trim(), getOrder_callback);
+            SysPublic.getInstance().getService().GetOrder(dtp.Value.ToString(dtp.CustomFormat).Trim(), getOrder_callback);
         }
 
         private void dataGridView5_SelectionChanged(object sender, EventArgs e)
